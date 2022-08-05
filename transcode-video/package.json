@@ -1,0 +1,22 @@
+{
+  "name": "transcode-video",
+  "version": "1.0.0",
+  "description": "Transcode Video Function",
+  "main": "index.js",
+  "scripts": {
+    "pack": "npm-pack-zip",
+    "test": "run-local-lambda --file TranscodeVideo.js --event tests/event.json",
+    "deploy": "aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:592057217979:function:transcode-video --zip-file fileb://transcode-video.zip",
+    "predeploy": "npm-pack-zip -r transcode-video.zip * -x *.zip *.json *.log"
+  },
+  "dependencies": {
+    "aws-sdk": "latest",
+    "run-local-lambda": "^1.1.1",
+    "save-dev": "0.0.1-security"
+  },
+  "author": "Peter Sbaraki",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "npm-pack-zip": "^1.3.0"
+  }
+}
